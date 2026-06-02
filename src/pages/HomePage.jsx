@@ -4,7 +4,7 @@ import { useSleepData } from '../context/SleepDataContext';
 import { useChat } from '../context/ChatContext';
 import { getGreeting } from '../utils/dateHelper';
 import { analyzeSleep } from '../utils/sleepAnalyzer';
-import ChatBubble from '../components/ChatBubble';
+import ChatBubble from '../components/Chatbubble';
 import QuickReply from '../components/QuickReply';
 import ProgressBar from '../components/ProgressBar';
 import MoodSelector from '../components/MoodSelector';
