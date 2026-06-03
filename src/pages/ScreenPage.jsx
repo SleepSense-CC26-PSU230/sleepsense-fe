@@ -113,13 +113,13 @@ export default function ScreenPage() {
 
   return (
     <div className="page-content">
-      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #FFF3E0, #FFECB3)' }}>
+      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #FFF3E0, #FFECB3)', color: '#1a1a1a' }}>
         <h2 style={{ fontSize: 18, marginBottom: 4 }}>📱 Manajemen Screen Time</h2>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
           Cahaya biru dari layar dapat menekan melatonin hingga <strong>50%</strong>. Idealnya, hentikan screen time <strong>30-60 menit</strong> sebelum tidur.
         </p>
         {todayTotal > 0 && (
-          <div style={{ marginTop: 10, padding: '8px 12px', background: todayTotal > 60 ? '#FFEBEE' : '#E8F5E9', borderRadius: 10 }}>
+          <div style={{ marginTop: 10, padding: '8px 12px', background: todayTotal > 60 ? '#FFEBEE' : '#E8F5E9', borderRadius: 10, color: '#1a1a1a' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>
               {todayTotal > 60 ? '⚠️' : '✅'} Hari ini: <strong>{todayTotal} menit</strong> screen time
               {todayTotal > 60 ? ' — coba dikurangi ya!' : ' — bagus!'}

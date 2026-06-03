@@ -83,7 +83,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Kontak Darurat */}
-      <div className="card" style={{ marginBottom: 16, background: '#FFF3E0' }}>
+      <div className="card" style={{ marginBottom: 16, background: '#FFF3E0', color: '#1a1a1a' }}>
         <h3 style={{ fontSize: '1rem', marginBottom: 8 }}>🆘 Kontak Darurat</h3>
         <p style={{ fontSize: '0.85rem' }}>Jika kamu atau orang terdekat membutuhkan bantuan segera:</p>
         <p style={{ fontSize: '0.9rem', fontWeight: 600, marginTop: 4 }}>📞 KESWA: 119 ext 8</p>

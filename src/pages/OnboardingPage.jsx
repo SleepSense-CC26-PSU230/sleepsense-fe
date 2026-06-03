@@ -43,9 +43,9 @@ export default function OnboardingPage() {
 
   return (
     <div style={{
-      minHeight: '100vh', 
+      minHeight: '100dvh',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      padding: 24, background: 'linear-gradient(160deg, #E8EEF6 0%, #F0F4F8 100%)'
+      padding: 24, background: 'linear-gradient(160deg, #E8EEF6 0%, #F0F4F8 100%)', color: '#1a1a1a'
     }}>
       <div style={{ maxWidth: 400, width: '100%' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>

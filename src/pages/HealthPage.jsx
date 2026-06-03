@@ -133,7 +133,7 @@ export default function HealthPage() {
   return (
     <div className="page-content">
       {/* Hipertensi Info */}
-      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #FFEBEE, #FFCDD2)' }}>
+      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #FFEBEE, #FFCDD2)', color: '#1a1a1a' }}>
         <h2 style={{ fontSize: 18, marginBottom: 4 }}>❤️ Risiko Hipertensi & Tidur</h2>
         <p style={{ fontSize: '0.85rem', lineHeight: 1.5 }}>
           Kurang tidur kronis (<strong>&lt;6 jam</strong>) meningkatkan risiko hipertensi hingga <strong>20%</strong>.
@@ -147,7 +147,7 @@ export default function HealthPage() {
       </div>
 
       {/* Prediksi AI */}
-      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #E8EAF6, #E3F2FD)' }}>
+      <div className="card" style={{ marginBottom: 16, background: 'linear-gradient(135deg, #E8EAF6, #E3F2FD)', color: '#1a1a1a' }}>
         <h3 style={{ fontSize: '1rem', marginBottom: 8 }}>🤖 Analisis Risiko AI</h3>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
           Model AI kami menganalisis pola tidur & gaya hidup kamu.<br />
@@ -157,7 +157,7 @@ export default function HealthPage() {
           <div style={{
             background: prediction.prediction?.risk_level === 'Tinggi' ? '#FFEBEE' :
                         prediction.prediction?.risk_level === 'Sedang' ? '#FFF8E1' : '#E8F5E9',
-            borderRadius: 12, padding: 16, marginBottom: 12
+            borderRadius: 12, padding: 16, marginBottom: 12, color: '#1a1a1a'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <span style={{ fontSize: 32 }}>
@@ -173,7 +173,7 @@ export default function HealthPage() {
             </div>
             <p style={{ fontSize: '0.85rem', marginBottom: 8 }}>{prediction.prediction?.summary}</p>
             {prediction.advice && (
-              <div style={{ fontSize: '0.85rem', background: 'rgba(255,255,255,0.7)', borderRadius: 8, padding: 10, marginTop: 8 }}>
+              <div style={{ fontSize: '0.85rem', background: 'rgba(255,255,255,0.7)', borderRadius: 8, padding: 10, marginTop: 8, color: '#1a1a1a' }}>
                 <strong>💡 Saran Gemini AI:</strong>
                 <p style={{ marginTop: 4, lineHeight: 1.5 }}>{prediction.advice}</p>
               </div>
@@ -269,7 +269,7 @@ export default function HealthPage() {
       )}
 
       {dassResult && (
-        <div className="card" style={{ marginBottom: 16, background: '#FFF3E0' }}>
+        <div className="card" style={{ marginBottom: 16, background: '#FFF3E0', color: '#1a1a1a' }}>
           <h4 style={{ fontSize: '0.9rem', marginBottom: 8 }}>✅ Hasil Skrining Tersimpan</h4>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
             {[
