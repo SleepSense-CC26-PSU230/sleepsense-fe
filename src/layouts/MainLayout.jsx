@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logoImg from '../assets/logo.png';
 import '../styles/layouts.css';
 
 const NAV_ITEMS = [
@@ -19,7 +20,7 @@ export default function MainLayout() {
     <div className="main-layout">
       <header className="main-header">
         <div className="header-brand">
-          <span className="header-logo">😴</span>
+          <img src={logoImg} alt="SleepSense" className="header-logo-img" />
           <span className="header-name">SleepSense</span>
         </div>
         <div className="header-avatar">

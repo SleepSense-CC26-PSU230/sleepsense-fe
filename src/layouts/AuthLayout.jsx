@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 import '../styles/auth.css';
 
 export default function AuthLayout() {
@@ -7,7 +8,7 @@ export default function AuthLayout() {
     <div className="auth-layout">
       <div className="auth-brand">
         <div className="auth-logo">
-          <span>🌙</span>
+          <img src={logoImg} alt="SleepSense" className="auth-logo-img" />
         </div>
         <h1 className="auth-title">SleepSense</h1>
         <p className="auth-subtitle">Tidur Lebih Baik, Hidup Lebih Sehat</p>

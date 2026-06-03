@@ -30,16 +30,16 @@
   font-size: 0.8rem;
 }
 .risk-low {
-  background: #E8F5E9;
-  color: #2E7D32;
+  background: var(--badge-low-bg);
+  color: var(--badge-low-text);
 }
 .risk-medium {
-  background: #FFF3E0;
-  color: #E65100;
+  background: var(--badge-medium-bg);
+  color: var(--badge-medium-text);
 }
 .risk-high {
-  background: #FFEBEE;
-  color: #C62828;
+  background: var(--badge-high-bg);
+  color: var(--badge-high-text);
 }
 .home-mood-card {
   margin-bottom: 16px;
@@ -70,15 +70,16 @@
 /* ScreenPage */
 .screen-info-card {
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #FFF3E0, #FFECB3);
+  background: linear-gradient(135deg, var(--card-screen-bg-start), var(--card-screen-bg-end));
 }
 .screen-info-card h2 {
   font-size: 18px;
   margin-bottom: 4px;
+  color: var(--text-primary);
 }
 .screen-info-card p {
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--card-screen-text);
 }
 .screen-history-card {
   margin-bottom: 16px;
@@ -142,20 +143,23 @@
 /* HealthPage */
 .health-hipertension-card {
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+  background: linear-gradient(135deg, var(--card-health-bg-start), var(--card-health-bg-end));
 }
 .health-hipertension-card h2 {
   font-size: 18px;
   margin-bottom: 4px;
+  color: var(--card-health-text);
 }
 .health-hipertension-card p {
   font-size: 0.85rem;
   line-height: 1.5;
+  color: var(--card-health-text);
 }
 .health-hipertension-list {
   font-size: 0.85rem;
   margin-top: 8px;
   padding-left: 20px;
+  color: var(--card-health-text);
 }
 .health-dass-intro {
   text-align: center;
@@ -166,11 +170,12 @@
   margin-bottom: 16px;
 }
 .health-emergency-card {
-  background: #FFF3E0;
+  background: var(--card-emergency-bg);
   margin-bottom: 16px;
 }
 .health-emergency-card p {
   font-size: 0.85rem;
+  color: var(--text-primary);
 }
 
 /* SettingsPage */
@@ -193,8 +198,12 @@
   cursor: pointer;
 }
 .settings-emergency-card {
-  background: #FFF3E0;
+  background: var(--card-settings-emergency-bg);
   margin-bottom: 16px;
+}
+.settings-emergency-card p,
+.settings-emergency-card h3 {
+  color: var(--text-primary);
 }
 .settings-footer {
   text-align: center;
@@ -212,7 +221,7 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: linear-gradient(160deg, #E8EEF6 0%, #F0F4F8 100%);
+  background: linear-gradient(160deg, var(--onboarding-bg-start) 0%, var(--onboarding-bg-end) 100%);
 }
 .onboarding-content {
   max-width: 400px;
@@ -229,6 +238,7 @@
   font-size: 24px;
   font-weight: 700;
   margin-top: 12px;
+  color: var(--text-primary);
 }
 .onboarding-desc {
   color: var(--text-secondary);
@@ -258,6 +268,7 @@
 .onboarding-focus-label {
   font-weight: 600;
   font-size: 0.95rem;
+  color: var(--text-primary);
 }
 .onboarding-focus-desc {
   font-size: 0.8rem;
