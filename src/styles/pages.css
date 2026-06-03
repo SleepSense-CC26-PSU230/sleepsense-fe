@@ -77,9 +77,19 @@
   margin-bottom: 4px;
   color: var(--text-primary);
 }
-.screen-info-card p {
+/* .screen-info-card p {
   font-size: 0.85rem;
   color: var(--card-screen-text);
+} */
+.screen-info-card p {
+  font-size: 0.85rem;
+  color: #5A3E00;
+}
+
+@media (prefers-color-scheme: dark) {
+  .screen-info-card p {
+    color: #8B6914;
+  }
 }
 .screen-history-card {
   margin-bottom: 16px;
