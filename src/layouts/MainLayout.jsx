@@ -5,7 +5,7 @@ import logoImg from '../assets/logo.png';
 import '../styles/layouts.css';
 
 const NAV_ITEMS = [
-  { to: '/', icon: '🏠', label: 'Home' },
+  { to: '/home', icon: '🏠', label: 'Home' },
   { to: '/screen', icon: '📱', label: 'Screen' },
   { to: '/sleep', icon: '🌙', label: 'Sleep' },
   { to: '/health', icon: '❤️', label: 'Health' },

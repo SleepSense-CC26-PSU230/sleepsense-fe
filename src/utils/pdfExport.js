@@ -1,3 +1,5 @@
+import logoUrl from '../assets/logo.png';
+
 export function exportWeeklyReport({ sleepRecords, dass21History, user, weeklyStats }) {
   const now = new Date();
   const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -37,21 +39,28 @@ export function exportWeeklyReport({ sleepRecords, dass21History, user, weeklySt
     </tr>`;
   }).join('');
 
-  const diffSign = (weeklyStats?.diff ?? 0) >= 0 ? '+' : '';
-  const diffColor = (weeklyStats?.diff ?? 0) >= 0 ? '#276749' : '#9B2C2C';
+  const diffVal = weeklyStats?.diff ?? 0;
+  const diffSign = diffVal >= 0 ? '+' : '';
+  const diffColor = diffVal >= 0 ? '#276749' : '#9B2C2C';
+
+  // Gunakan URL logo dari Vite import (sama origin, bisa diakses popup)
+  const logoSrc = logoUrl;
 
   const html = `<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Laporan Tidur SleepSense</title>
+<title>Laporan Tidur SleepSense — ${user?.nickname || 'Pengguna'}</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: Arial, sans-serif; color: #1a1a1a; background: #fff; padding: 32px; font-size: 13px; }
-  .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; padding-bottom:16px; border-bottom:2px solid #4A5568; }
-  .brand { font-size:22px; font-weight:700; color:#2D3748; }
-  .brand span { color:#6B46C1; }
-  .meta { text-align:right; color:#718096; font-size:12px; line-height:1.6; }
+  .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:16px; border-bottom:2px solid #4A5568; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand img { width:36px; height:36px; object-fit:contain; }
+  .brand-text { font-size:20px; font-weight:700; color:#2D3748; letter-spacing:-0.5px; }
+  .brand-text span { color:#6B46C1; }
+  .brand-sub { font-size:11px; color:#718096; margin-top:1px; }
+  .meta { text-align:right; color:#718096; font-size:12px; line-height:1.7; }
   .sec-title { font-size:13px; font-weight:600; color:#2D3748; margin-bottom:10px; padding:5px 10px; background:#EDF2F7; border-left:3px solid #6B46C1; border-radius:0 4px 4px 0; }
   .section { margin-bottom:22px; }
   .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:14px; }
@@ -59,20 +68,23 @@ export function exportWeeklyReport({ sleepRecords, dass21History, user, weeklySt
   .stat-val { font-size:20px; font-weight:700; color:#6B46C1; }
   .stat-lbl { font-size:11px; color:#718096; margin-top:2px; }
   table { width:100%; border-collapse:collapse; font-size:12px; }
-  th { background:#2D3748; color:white; padding:7px 8px; text-align:left; font-weight:500; }
+  th { background:#2D3748; color:white; padding:7px 8px; text-align:left; font-weight:500; font-size:11px; }
   td { padding:6px 8px; border-bottom:1px solid #E2E8F0; }
   tr:nth-child(even) td { background:#F7FAFC; }
   .empty { text-align:center; color:#A0AEC0; padding:16px; font-style:italic; }
-  .disc { margin-top:24px; padding:8px 12px; background:#FFFBEB; border:1px solid #F6E05E; border-radius:6px; font-size:11px; color:#744210; }
-  .footer { margin-top:20px; padding-top:14px; border-top:1px solid #E2E8F0; text-align:center; font-size:11px; color:#A0AEC0; }
+  .disc { margin-top:20px; padding:8px 12px; background:#FFFBEB; border:1px solid #F6E05E; border-radius:6px; font-size:11px; color:#744210; }
+  .footer { margin-top:18px; padding-top:14px; border-top:1px solid #E2E8F0; text-align:center; font-size:11px; color:#A0AEC0; line-height:1.7; }
   @media print { body { padding:16px; } }
 </style>
 </head>
 <body>
 <div class="header">
-  <div>
-    <div class="brand">😴 Sleep<span>Sense</span></div>
-    <div style="font-size:12px;color:#718096;margin-top:3px;">Laporan Kesehatan Tidur Mingguan</div>
+  <div class="brand">
+    <img src="${logoSrc}" alt="SleepSense Logo" />
+    <div>
+      <div class="brand-text">Sleep<span>Sense</span></div>
+      <div class="brand-sub">Laporan Kesehatan Tidur Mingguan</div>
+    </div>
   </div>
   <div class="meta">
     <strong>${user?.nickname || user?.username || 'Pengguna'}</strong><br>
@@ -89,7 +101,7 @@ export function exportWeeklyReport({ sleepRecords, dass21History, user, weeklySt
     <div class="stat"><div class="stat-val">🔥${streak}</div><div class="stat-lbl">Hari Streak</div></div>
     <div class="stat">
       ${weeklyStats?.lastWeekAvg > 0
-        ? `<div class="stat-val" style="color:${diffColor}">${diffSign}${weeklyStats.diff}j</div><div class="stat-lbl">vs Minggu Lalu</div>`
+        ? `<div class="stat-val" style="color:${diffColor}">${diffSign}${diffVal}j</div><div class="stat-lbl">vs Minggu Lalu</div>`
         : `<div class="stat-val">—</div><div class="stat-lbl">vs Minggu Lalu</div>`}
     </div>
   </div>
@@ -113,13 +125,16 @@ ${recentDass.length > 0 ? `
   </table>
 </div>` : ''}
 
-<div class="disc">⚠️ <strong>Penting:</strong> Laporan ini bersifat informatif dan BUKAN diagnosis medis. Hotline KESWA: <strong>119 ext 8</strong> · <strong>021-500-454</strong></div>
-<div class="footer">SleepSense · Team CC26-PSU230 · DBS Foundation Coding Camp 2026<br>"Tidur yang baik adalah investasi terbaik untuk hari esok" 🌙</div>
+<div class="disc">⚠️ <strong>Penting:</strong> Laporan ini bersifat informatif dan BUKAN diagnosis medis. Konsultasikan hasil ini dengan tenaga medis profesional. Hotline KESWA: <strong>119 ext 8</strong> · <strong>021-500-454</strong></div>
+<div class="footer">
+  SleepSense · Team CC26-PSU230 · DBS Foundation Coding Camp 2026<br>
+  <em>"Tidur yang baik adalah investasi terbaik untuk hari esok" 🌙</em>
+</div>
 
 <script>window.onload = function() { window.print(); }</script>
 </body></html>`;
 
-  const win = window.open('', '_blank', 'width=900,height=700');
+  const win = window.open('', '_blank', 'width=960,height=720');
   if (!win) { alert('Pop-up diblokir! Izinkan pop-up di browser untuk mengunduh laporan.'); return; }
   win.document.write(html);
   win.document.close();
