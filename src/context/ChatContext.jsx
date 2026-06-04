@@ -21,7 +21,7 @@ export function ChatProvider({ children }) {
   }, [user]);
 
   const addUserMessage = useCallback(async (content) => {
-    const userMsg = { role: 'user', content };
+    const userMsg = { role: 'user', content, timestamp: new Date().toISOString() };
     setMessages(prev => [...prev, userMsg]);
     setIsLoading(true);
 
@@ -34,11 +34,11 @@ export function ChatProvider({ children }) {
         sleepStats,
         predictionResult   // ← chatbot sekarang tahu hasil prediksi!
       );
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }]);
     } catch {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: 'Maaf, aku lagi ada gangguan. Coba lagi ya 🙏'
+        content: 'Maaf, aku lagi ada gangguan. Coba lagi ya 🙏', timestamp: new Date().toISOString()
       }]);
     } finally {
       setIsLoading(false);
@@ -58,7 +58,7 @@ export function ChatProvider({ children }) {
     setIsLoading(true);
     try {
       const reply = await sendQuickReply(optionKey, user, sleepStats, predictionResult);
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: reply, timestamp: new Date().toISOString() }]);
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Maaf, coba lagi ya 🙏' }]);
     } finally {
