@@ -26,15 +26,29 @@ export function SleepDataProvider({ children }) {
 
   const addSleepRecord = useCallback(async (record) => {
     const tempId = `temp_${Date.now()}`;
-    const newRecord = { ...record, id: tempId, date: new Date().toISOString() };
+    // Optimistic update — pakai data form langsung agar tidak ada ?
+    const newRecord = {
+      id: tempId,
+      date: new Date().toISOString(),
+      bedtime: record.bedtime || null,
+      wakeTime: record.wakeTime || null,
+      duration: record.duration || 0,
+      quality: record.quality || null,
+      qualityScore: record.qualityScore || null,
+      screenTimeBefore: record.screenTimeBefore || null,
+      notes: record.notes || null,
+    };
     setSleepRecords(prev => [newRecord, ...prev].slice(0, 30));
     try {
       const saved = await saveSleepData(record);
-      // Ganti tempId dengan id dari server
+      // Ganti tempId dengan data resmi dari server
       setSleepRecords(prev => prev.map(r => r.id === tempId ? saved : r));
       return saved;
-    } catch {
-      return newRecord;
+    } catch (err) {
+      // Kalau gagal, hapus record temp agar tidak muncul data palsu
+      setSleepRecords(prev => prev.filter(r => r.id !== tempId));
+      console.error('Gagal simpan sleep record:', err);
+      throw err;
     }
   }, []);
 
