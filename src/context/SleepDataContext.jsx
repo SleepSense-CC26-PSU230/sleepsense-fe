@@ -26,7 +26,7 @@ export function SleepDataProvider({ children }) {
 
   const addSleepRecord = useCallback(async (record) => {
     const tempId = `temp_${Date.now()}`;
-    // Optimistic update — pakai data form langsung agar tidak ada ?
+    // Optimistic: tampilkan dulu pakai data form
     const newRecord = {
       id: tempId,
       date: new Date().toISOString(),
@@ -41,7 +41,7 @@ export function SleepDataProvider({ children }) {
     setSleepRecords(prev => [newRecord, ...prev].slice(0, 30));
     try {
       const saved = await saveSleepData(record);
-      // Ganti tempId dengan data resmi dari server
+      // Ganti data temp dengan data resmi dari server
       setSleepRecords(prev => prev.map(r => r.id === tempId ? saved : r));
       return saved;
     } catch (err) {
